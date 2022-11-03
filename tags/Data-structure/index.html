@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Tag: Data structure - elt.green</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Elliott Green"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Elliott Green"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="elt.green"><meta property="og:url" content="Elliott%20Green"><meta property="og:site_name" content="elt.green"><meta property="og:locale" content="en_US"><meta property="og:image" content="/img/elliott_profile.jpg"><meta property="article:author" content="Elliott Green"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="/img/elliott_profile.jpg"><meta property="twitter:creator" content="@cryptonines"><meta property="twitter:site" content="cryptonines"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://elt.green"},"headline":"elt.green","image":["https://elt.green/img/og_image.png"],"author":{"@type":"Person","name":"Elliott Green"},"publisher":{"@type":"Organization","name":"elt.green","logo":{"@type":"ImageObject","url":"https://elt.green/img/favicon.ico"}},"description":""}</script><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="elt.green" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a></div><div class="navbar-end"><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">Tags</a></li><li class="is-active"><a href="#" aria-current="page">Data structure</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2022-04-22T00:00:00.000Z" title="4/22/2022, 12:00:00 AM">2022-04-22</time></span><span class="level-item">Updated&nbsp;<time dateTime="2022-11-03T22:44:36.047Z" title="11/3/2022, 10:44:36 PM">2022-11-03</time></span><span class="level-item">14 minutes read (About 2096 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/an-introduction-to-merkel-trees/">An introduction to Merkel Trees</a></h1><div class="content"><p>
+  <img style="" src="https://seebitcoin.com/wp-content/uploads/2016/09/merkcolourtree.jpg">
+</p>
+
+<h2 id="What-is-a-Merkle-tee"><a href="#What-is-a-Merkle-tee" class="headerlink" title="What is a Merkle tee?"></a>What is a Merkle tee?</h2><p>A Merkle tree is a data structure which shares some qualities of a binary tree and a distributed hash table.</p>
+<p>A Merkle tree is similar to a binary tree, whereby the graph has a branching factor of 2 - each node is expected to have 2 children and end with one root node. A Merkle tree has the following time difficulty properties across all scenario cases.</p>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Time difficulty</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Search</td>
+<td>O(log n)</td>
+<td>Inherted from binary tree</td>
+</tr>
+<tr>
+<td>Insert</td>
+<td>O(log n)</td>
+<td>Inherted from binary tree</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>O(log n)</td>
+<td>Inherted from binary tree</td>
+</tr>
+<tr>
+<td>Space</td>
+<td>O(n)</td>
+<td>Inherted from binary tree</td>
+</tr>
+</tbody></table>
+<p>The qualities that a Merkle tree inherits from a distributed hash table is that the parent node value is the result of some hashing function using the two child nodes. If either value is changed in the children, then the parent’s resulting value will also be different.</p>
+<p>This changed hash will propogate and be used in other hashing functions, resulting in the root being different. This is how the Merkle tree ensures the validity of child nodes values across a large data set.</p>
+<h2 id="What-are-Merkle-trees-used-for"><a href="#What-are-Merkle-trees-used-for" class="headerlink" title="What are Merkle trees used for?"></a>What are Merkle trees used for?</h2><p>Merkle trees are often used in decentralised storage, where the goal is to store data over a network of machines.</p>
+<p>Because of the hashing quality of a Merkle tree, they are able to hash a large dataset into many fixed sized hashes during tree creation and then are able to pass around a single parent root node, collated of all the previous hashes.</p>
+<p>Since Merkle trees can verify a single leaf node inclusion in logarithmic time - less overall data and overhead is needed to prove this inclusion - and this is why Merkle trees are popular in crypto token distributors.</p>
+<h2 id="Example-of-constructing-a-Merkel-tree"><a href="#Example-of-constructing-a-Merkel-tree" class="headerlink" title="Example of constructing a Merkel tree"></a>Example of constructing a Merkel tree</h2><p>When creating a Merkel tree, an inital data is hashed to produce a set of leaf nodes. The leaf nodes are shown as h1 … h4 in the diagram below. The inital leaf data could be :</p>
+<ul>
+<li>Segmented parts of a file</li>
+<li>A list of transactions as a part of a blockchain block</li>
+<li>Other large blobs of user defined data whereby logarithmic time lookups can be done</li>
+</ul>
+<p>Taking the leaf nodes in pairs like in a binary tree, we create a parent node which is the result of concatenating and hashing the children h1 and h2. This is done until the tree is formed and we are left with one parent root node h1h2h3h4.</p>
+<p>
+  <img style="" src="/img/merkle/basic-tree.png">
+  <em style="">A balanced Merkel tree with an even number of leaf nodes.</em>
+</p>
+
+<h4 id="Advantage-1-Root-checksum"><a href="#Advantage-1-Root-checksum" class="headerlink" title="Advantage 1 - Root checksum"></a>Advantage 1 - Root checksum</h4><p>The root hash is a derived calculation from the inital leaf data. If a character of data in a leaf node changes then the hash calculated for the leaf will be different, cascading in hash changes down the branches resulting in a different root hash being present. The root is able to be used as a checksum that all of the leaf data are byte-perfect and free from corruption or changes.</p>
+<p>If an odd number of input nodes are present at any branch of the tree - then the properties of a binary tree aren’t fulfilled. The Merkel tree should duplicate the orphaned node and hash it with itself. In the below example, the duplicated nodes that are used to balance the tree are highlighted in orange. h5 has no sibling so is duplicated and hashed with itself to create a parent h5h5. h5h5 also has no sibling, so it is duplicated and hashed with itself to create a parent h5h5h5h5. At this branch a sibling exists for h5h5h5 so no duplication is required.</p>
+<p>
+  <img style="" src="/img/merkle/odd-tree.png">
+  <em style="">A unbalanced Merkel tree with an odd number of leaf nodes.</em>
+</p>
+
+<p>The naieve way of checking is to generate a new tree from all nodes, in our example these are h1 … h8 and checks that when generating a Merkle tree that the old root and the new root are equal - but this will get computationally expensive to build as the number of leaf nodes grows. The generation of a Merkle tree should only be done once to generate a root, and store the resulting proofs.</p>
+<h4 id="Advantage-2-Logarithmic-verification"><a href="#Advantage-2-Logarithmic-verification" class="headerlink" title="Advantage 2 - Logarithmic verification"></a>Advantage 2 - Logarithmic verification</h4><p>Using the same methodology as before, we create the below tree with 8 nodes.</p>
+<p>Note that there are 8 leaf nodes in this example but we only three proofs, three hash calculations and a string comparison for the root are required to do the same amount of computational effort.</p>
+<p>It’s this reduction of data input needed to be submitted onchain by the user which is what makes verification so efficent at big <code>N</code>.</p>
+<p>
+  <img style="" src="/img/merkle/efficient-tree.png">
+  <em style="">Logarithmic searching reduces the computational spend.</em>
+</p>
+
+<h4 id="Advantage-3-Gas-fees-reduced-for-inserting-rewards"><a href="#Advantage-3-Gas-fees-reduced-for-inserting-rewards" class="headerlink" title="Advantage 3 - Gas fees reduced for inserting rewards"></a>Advantage 3 - Gas fees reduced for inserting rewards</h4><p>Given that we have a Merkle root and we want to submit this onchain - we only need to provide one result hash of a fixed size costing a determinstic amount of gas, compared to adding rows linearly to a contract for the length of our input.</p>
+<p>If we had thousands of users to reward or verify, computing and sending a linear amount of gas per operation is not efficent and will quickly bankrupt any funds or treasury you have to distribute these.</p>
+<p>The below example shows the difference between the two models. The main pattern which is being used by these contracts are push vs pull. Do you push tokens to your user at a cost of gas, or do you make your users pull the rewards and offsetting some of that cost to them?</p>
+<p>The current <a target="_blank" rel="noopener" href="https://github.com/Zilliqa/ZRC/blob/main/zrcs/zrc-2.md">ZRC-2</a> and <a target="_blank" rel="noopener" href="https://github.com/Switcheo/zwap-token/blob/6b0c97fa445019e7c3faa42d64a71759bf14bed8/contracts/v2/ZWAPDistributor.scilla">MerkleDistributor</a> contracts model rewarding users with a fungible token with a Merkle tree.</p>
+<p>Transfering has been a popular mechanism for airdrops but is wildly inefficent, naievely distributing tokens by iterating a collection in linear time and sending funds from A to B, costing the developer an gas amount linear to the amount of users in the collection.</p>
+<p>The only upside for airdropping directly is that your users do not have to submit a transaction, which might be useful if your users don’t own any crypto or are lazy and won’t claim the reward, but the problem remains they will have no funds to interact with whatever you reward them with as they will be unable to pay the gas fees.</p>
+<h4 id="100-users"><a href="#100-users" class="headerlink" title="100 users"></a>100 users</h4><table>
+<thead>
+<tr>
+<th>Blockchain operation</th>
+<th>Avg op cost (ZIL)*</th>
+<th>Ops required</th>
+<th>Total cost (ZIL)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Admin Merkle Root Submit</td>
+<td>0.774</td>
+<td>1</td>
+<td>0.774</td>
+</tr>
+<tr>
+<td>User Merkle Root Claim</td>
+<td>4.634*</td>
+<td>1</td>
+<td>4.634*</td>
+</tr>
+<tr>
+<td>Admin Transfer A -&gt; B</td>
+<td>3/6*</td>
+<td>100</td>
+<td>300/600*</td>
+</tr>
+</tbody></table>
+<h4 id="1000-users"><a href="#1000-users" class="headerlink" title="1000 users"></a>1000 users</h4><table>
+<thead>
+<tr>
+<th>Blockchain operation</th>
+<th>Avg op cost (ZIL)*</th>
+<th>Ops required</th>
+<th>Total cost (ZIL)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Admin Merkle Root Submit</td>
+<td>0.774</td>
+<td>1</td>
+<td>0.774</td>
+</tr>
+<tr>
+<td>User Merkle Root Claim</td>
+<td>6.113*</td>
+<td>1</td>
+<td>6.113*</td>
+</tr>
+<tr>
+<td>Admin Transfer A -&gt; B</td>
+<td>3/6*</td>
+<td>1000</td>
+<td>3000/6000*</td>
+</tr>
+</tbody></table>
+<p><strong>*Variable depending on input byte length.</strong></p>
+<p>The conclusion we can draw from analysing the two distribution mechanisms is that the pull strategy is efficent as only one root is being submitted onchain, and it’s also negligable to ask to users to submit a transaction that costs a small amount of gas. Whereas the push mechanism can quickly scale out of control for large N.</p>
+<h2 id="Token-Distributors"><a href="#Token-Distributors" class="headerlink" title="Token Distributors"></a>Token Distributors</h2><p>An example of when a Merkle tree is best used is in cryptocurrency token distributors. We can ensure unbiased processing of the computation and exeuction of rewards using smart contracts.</p>
+<p>There are several reward concepts in crypto which require funds to be sent to users, either for participating in liquidity pools, defi or just holding an NFT. Since the Merkle contract just proves or disproves that a users proof is correct, you can enable mints, transfers and practically anything else you’d want to gatekeep.</p>
+<p>One of the vectors of attack with a Merkle tree is the proof availability. If an attacker can disrupt where the proofs are being distributed from then users will be unable to claim their tokens. Decentralised storage mitigates nearly all of this risk. This isn’t such a problem for smaller projects, but larger projects can be majorly distrupted.</p>
+<h2 id="Introduction-to-Merkle-trees-on-Zilliqa"><a href="#Introduction-to-Merkle-trees-on-Zilliqa" class="headerlink" title="Introduction to Merkle trees on Zilliqa"></a>Introduction to Merkle trees on Zilliqa</h2><h3 id="Problem-Statement-Reward-users-in-LP-with-a-fungible-token"><a href="#Problem-Statement-Reward-users-in-LP-with-a-fungible-token" class="headerlink" title="Problem Statement - Reward users in LP with a fungible token"></a>Problem Statement - Reward users in LP with a fungible token</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GIVEN some users are providing liquidity to a DEX where the state is a tuple of \&lt;account, amount\&gt;</span><br><span class="line">WHEN some predetermined time has passed</span><br><span class="line">THEN I want to reward everyone a fixed amount of tokens depending on their percentage allocated</span><br></pre></td></tr></table></figure>
+
+<p>This scenario is very common and can be modified to fit other scenarios such as holding a particular NFT or airdropping fungible tokens or NFTs.</p>
+<p>We do need to take note of the rewarding timeframe. Too quickly and users will need to submit several transactions which may not be gas efficent for a small amount of tokens each time. Too long and your users will be annoyed at the frequency but will have a larger amount of tokens sent in a single transaction - which could have a negative impact on price performance. Targeting rewards for once a week seems to be the sweet spot which users don’t mind, all depends on how much gas is used and how much this costs on your chain of choice.</p>
+<p>We want to take a snapshot of contract state every hour to track the state changes over the period of a week.</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(1 snapshot * 24 hours) * 7 days = 168 snapshots</span><br></pre></td></tr></table></figure>
+
+<p>We’ll need to collect the LP data for each user and how much they have at the time of the snapshot.</p>
+<p>We can then average the leafs into one final result set. From this result set we will have the average amount deposited over that period and how much of a percentage they own.</p>
+<p>We will have a fixed amount of tokens we want to reward over this period, we can calculate how many tokens each user should get from knowing their percentage owned at each epoch.</p>
+<p>Once we’ve summed and averaged all of the amounts, we’re left with a data structure like the below.</p>
+<figure class="highlight js"><figcaption><span>LP data as leafs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> b16Leaves = </span><br><span class="line">[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">account</span>:<span class="string">&quot;0x00000000000000000000000000000000000000000&quot;</span>,</span><br><span class="line">        <span class="attr">amount</span>:<span class="string">&quot;1000000000&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    ...</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">account</span>:<span class="string">&quot;0x44444444444444444444444444444444444444444&quot;</span>,</span><br><span class="line">        <span class="attr">amount</span>:<span class="string">&quot;44444444444&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>From here, we can generate a Merkle Tree which will contain all of the proof data and Merkle root.</p>
+<figure class="highlight js"><figcaption><span>Generating a tree of aggregated leaves</span><a target="_blank" rel="noopener" href="https://github.com/RedChillies-Core/Zilliqa-Merkle-Tree-Generator">RedChillies-MerkleTreeGenerator</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> tree = <span class="title function_">generateTreeforBase16</span>(b16Leaves)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Print the rows of the tree</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Generated data for each input leaf`</span>)</span><br><span class="line">tree.<span class="property">data</span>.<span class="title function_">map</span>(<span class="function"><span class="params">p</span> =&gt;</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(p));</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> merkleRoot = tree.<span class="title function_">getRoot</span>().<span class="title function_">toString</span>(<span class="string">&#x27;hex&#x27;</span>)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">`Root is : <span class="subst">$&#123;merkleRoot&#125;</span>`</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><figcaption><span>Merkle tree from aggregated leafs</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  account: <span class="string">&#x27;0x00000000000000000000000000000000000000000&#x27;</span>,</span><br><span class="line">  leaf: <span class="string">&#x27;0xa0054a1b7ede910bcddfe839cba8d43d07dea89a9c91b454b96f45ef8bb2cd96&#x27;</span>,</span><br><span class="line">  amount: <span class="string">&#x27;1000000000&#x27;</span>,</span><br><span class="line">  proof: [</span><br><span class="line">    <span class="string">&#x27;0xa48e48a76785e90d65ba4b0f58772837b0514bcbda5611dd81200289e2a0fce8&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0xdbd48bc5ce7390e72d03b159a2dedec4f2258742d1dc4b6926031f516ff887a0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0xc696f14bb8eb28f6fbaa5ae20303ce5107fed28c642f2221fb0a6a9d9afa7179&#x27;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  account: <span class="string">&#x27;0x11111111111111111111111111111111111111111&#x27;</span>,</span><br><span class="line">  leaf: <span class="string">&#x27;0xc696f14bb8eb28f6fbaa5ae20303ce5107fed28c642f2221fb0a6a9d9afa7179&#x27;</span>,</span><br><span class="line">  amount: <span class="string">&#x27;111111111&#x27;</span>,</span><br><span class="line">  proof: [</span><br><span class="line">    <span class="string">&#x27;0x6e5857651e652356e6291dc599bad97dcd8cd1192967c389c70cfbdb00b5d644&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0xd8d75c8c3566d53a4c20b847f6afda173be454939c3a49e6408dea748822e164&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;0xc696f14bb8eb28f6fbaa5ae20303ce5107fed28c642f2221fb0a6a9d9afa7179&#x27;</span></span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br><span class="line">...</span><br><span class="line">Root is : 0x3ccb7ba4d737d6c618e864f19c8117e4f6fc934019bfc93fa0e2eb9c892ce655</span><br></pre></td></tr></table></figure>
+
+<p>The MerkleDistributor allows the Admin to post new roots to it. <a target="_blank" rel="noopener" href="https://v2.viewblock.io/zilliqa/tx/0x76644c39d5e93c71761f32bb69fba27284bf2b346cd98de230d79a96f08f1799?network=testnet">An example of this.</a></p>
+<p>MerkleDistributor allows users to submit proofs with their inital dataset to check if the derived root is equal - it also let’s them batch multiple claims together. <a target="_blank" rel="noopener" href="https://v2.viewblock.io/zilliqa/tx/0xa4038f6452d26e7602842d052064b85215ee035633d914e4479c9be29cf2aeed?network=testnet">An example of this.</a> (Notice the tokens being newly minted from the null address to the users wallet)</p>
+<p>Once claimed, the Distributor stores a record in the state of the claimed leaf, so that repeated claims can be detected and identified to be hidden on the web client.</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>Merkle trees are becoming more common to see as developers don’t wish to pay for unnecessary gas costs, especially on chains where the native crypto is expensive.</p>
+<p>The technicalities of Merkle trees can be easily hidden by web clients whereby they know nothing about the snapshots or the proofs they need to pass - it can be as simple as showing reward rows.</p>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/elliott_profile.jpg" alt="Elliott Green"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Elliott Green</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>127.0.0.1</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Post</p><a href="/archives"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">6</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://twitter.com/cryptonines" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/elliott-green"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com/cryptonines"><i class="fab fa-twitter"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://duck.community" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Ducks</span></span><span class="level-right"><span class="level-item tag">duck.community</span></span></a></li><li><a class="level is-mobile" href="https://bizarrebiomes.com" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Biomes</span></span><span class="level-right"><span class="level-item tag">bizarrebiomes.com</span></span></a></li><li><a class="level is-mobile" href="https://zilkroad.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Zilkroad</span></span><span class="level-right"><span class="level-item tag">zilkroad.io</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="elt.green" height="28"></a><p class="is-size-7"><span>&copy; 2022 Elliott Green</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
