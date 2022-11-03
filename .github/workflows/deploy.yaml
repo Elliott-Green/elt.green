@@ -8,7 +8,7 @@ jobs:
     name: Checking out branch
     steps:
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
       with:
         submodules: true # Checkout private submodules(themes or something else).
     
@@ -29,6 +29,6 @@ jobs:
       uses: sma11black/hexo-action@v1.0.3
       with:
         deploy_key: ${{ secrets.DEPLOY_KEY }}
-        user_name: elliott-green
+        user_name: Elliott-Green
         user_email: elliottgreen@live.com
         commit_msg: ${{ github.event.head_commit.message }}
