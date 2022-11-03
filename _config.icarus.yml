@@ -1,4 +1,4 @@
-version: 5.0.0
+version: 5.1.0
 variant: default
 logo: /img/favicon.ico
 head:
@@ -73,7 +73,7 @@ widgets:
         type: profile
         author: Elliott Green
         author_title: 
-        location: '127.0.0.1'
+        location: 127.0.0.1
         avatar: img/elliott_profile.jpg
         avatar_rounded: true
         follow_link: https://twitter.com/cryptonines
