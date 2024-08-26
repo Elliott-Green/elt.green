@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Tag: address - elt.green</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="Elliott Green"><meta name="msapplication-TileImage" content="/img/favicon.ico"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Elliott Green"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="elt.green"><meta property="og:url" content="Elliott%20Green"><meta property="og:site_name" content="elt.green"><meta property="og:locale" content="en_US"><meta property="og:image" content="/img/elliott_profile.jpg"><meta property="article:author" content="Elliott Green"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="/img/elliott_profile.jpg"><meta property="twitter:creator" content="@cryptonines"><meta property="twitter:site" content="cryptonines"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://elt.green"},"headline":"elt.green","image":["https://elt.green/img/og_image.png"],"author":{"@type":"Person","name":"Elliott Green"},"publisher":{"@type":"Organization","name":"elt.green","logo":{"@type":"ImageObject","url":"https://elt.green/img/favicon.ico"}},"description":""}</script><link rel="icon" href="/img/favicon.ico"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/favicon.ico" alt="elt.green" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a></div><div class="navbar-end"><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">Tags</a></li><li class="is-active"><a href="#" aria-current="page">address</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2024-08-26T00:00:00.000Z" title="8/26/2024, 12:00:00 AM">2024-08-26</time></span><span class="level-item">Updated&nbsp;<time dateTime="2024-08-26T06:09:26.184Z" title="8/26/2024, 6:09:26 AM">2024-08-26</time></span><span class="level-item">6 minutes read (About 974 words)</span></div></div><h1 class="title is-3 is-size-4-mobile"><a class="link-muted" href="/generating-evm-vanity-addresses-efficently-with-profanity2/">Generating EVM vanity addresses efficently with &#039;profanity2&#039;</a></h1><div class="content"><p>
+  <img style="" src="https://raw.githubusercontent.com/1inch/profanity2/master/img/screenshot.png">
+</p>
+
+<h2 id="Cutting-Gas-Costs-with-Smart-Ethereum-Address-Choices"><a href="#Cutting-Gas-Costs-with-Smart-Ethereum-Address-Choices" class="headerlink" title="Cutting Gas Costs with Smart Ethereum Address Choices"></a>Cutting Gas Costs with Smart Ethereum Address Choices</h2><p>Gas costs are a critical factor in any blockchain project. Every transaction, comes with an inherent price tag. While there are numerous ways to optimize these costs, one method that often flies under the radar is selecting Ethereum addresses with specific characteristics to reduce gas consumption.</p>
+<p>At first glance, it might seem that the address you use in a transaction wouldn’t have any impact on gas fees. However, this isn’t true. Ethereum transactions often require passing addresses as part of the transaction data. When these addresses are encoded into the transaction data, the cost of encoding a zero byte is significantly less than that of encoding a non-zero byte.</p>
+<h2 id="Ethereum-Word-Composition-and-Storage"><a href="#Ethereum-Word-Composition-and-Storage" class="headerlink" title="Ethereum Word Composition and Storage"></a>Ethereum Word Composition and Storage</h2><p>In the EVM, data is stored and processed in chunks of 32 byte words. Every piece of data, including addresses, must be encoded into this format before being stored or processed.When interacting with the EVM, storing or manipulating these words can be costly, especially when they contain non-zero bytes. For example:</p>
+<p>Transaction Data: When sending a transaction that includes data (e.g., a function call with parameters), the data is encoded into bytes. Each byte in this data is charged based on whether it is zero or non-zero.</p>
+<ul>
+<li>Zero bytes cost 4 gas each.</li>
+<li>Non-zero bytes cost 68 gas each.</li>
+</ul>
+<p>Consider the following two addresses:</p>
+<ul>
+<li>Address A: 0xdecafbad00000000000000000000000000000000</li>
+<li>Address B: 0x1234567890abcdef1234567890abcdef12345678</li>
+</ul>
+<p>EVM words default to zero, so avoiding non-zero bytes reduces gas costs. The <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hamming_weight">hamming weight</a>, which measures the number of non-zero bits in data can be used to measure how many extra stores can be saved. Address A has a lower Hamming weight because it contains more zero bytes, as a result, using Address A in a transaction incurs lower gas fees compared to Address B.</p>
+<h2 id="Browser-solutions"><a href="#Browser-solutions" class="headerlink" title="Browser solutions"></a>Browser solutions</h2><p>Websites like <a target="_blank" rel="noopener" href="https://vanity-eth.tk/">vanity-eth.tk</a> expose the concept easily over the browser but have the disadvantage that trying to run brute-force inside the browser is crazy inefficent, and we’re trusting that they don’t send a response to their server. The latter can be mitigated by disconnecting from the internet temporarily and flushing the browser cache afterwards. Even if we assume the website is safe and doesn’t send our newly generated private key across the network, we can’t be so sure than they’d never be compromised in the future.</p>
+<p>One winter I spent 3 continuous days trying to generate an 8 leading zero on an NVIDIA GTX TITAN using vanity-eth.tk which was a very electricity expensive operation. Nowadays I can generate hundreds in less than 5 minutes on my M1.  </p>
+<h2 id="Generating-leading-zero-addresses-with-Profanity2"><a href="#Generating-leading-zero-addresses-with-Profanity2" class="headerlink" title="Generating leading zero addresses with Profanity2"></a>Generating leading zero addresses with Profanity2</h2><p>Profanity2 is one of the fastest open sourced Ethereum vanity address generators which can find specific patterns or sequences, such as leading zeros or custom prefixes and suffixes. It works by leveraging brute-force techniques to find private keys that, when hashed using keccak-256, produce an address that matches the desired pattern.</p>
+<p>Profanity2 requires a user provided public key which will change hex bytes and generate a new private key from them, profanity2 then computes a new Ethereum address from this manipulated public key, checking it against some specified criteria. Once a match is found, a private key which is offset from the original private key is produced. We’ll need both our original public/private key, and our generated private key</p>
+<p>This demonstration can be easily replicated by reading through <a target="_blank" rel="noopener" href="https://github.com/1inch/profanity2">1inch/profanity2’s</a> readme. For those who can’t decypher the readme, my tutorial might be more digestible.</p>
+<ol>
+<li>Grab any old private key you have laying around or generate a new wallet using metamask and get it’s private key. We’ll use openssl to derive a public key from that. Remove any prefixing ‘0x’ from the private key.<br><code>openssl ec -inform DER -text -noout -in &lt;(cat &lt;(echo -n &quot;302e0201010420&quot;) &lt;(echo -n &quot;PRIVATE_KEY_GOES_HERE&quot;) &lt;(echo -n &quot;a00706052b8104000a&quot;) | xxd -r -p) 2&gt;/dev/null | tail -6 | head -5 | sed &#39;s/[ :]//g&#39; | tr -d &#39;\n&#39; &amp;&amp; echo</code></li>
+<li>That will return a 130 byte hexadecimal public key, ensuring that the prefixing ‘04’ is removed, we should be left with 128 bytes.</li>
+<li>Clone the 1inch/profanity2 to your machine.<br><code>git clone https://github.com/1inch/profanity2.git</code></li>
+<li>Running the command which will find –leading 0’s. The -z flag is the seeding public key for the bruteforcing.<br><code>./profanity2.x64 --leading 0 -z DERIVED_PUBLIC_KEY_GOES_HERE</code></li>
+</ol>
+<p>
+  <img style="" src="/img/profanity/terminal-output.png">
+  <em style="">Profanity generating 10 leading zeros in just over 2 hours. Notice how the private key ending is mutated.</em>
+</p>
+
+<ol start="5">
+<li>Once you’re happy with an address that’s been generated you can stop the search and run the command, removing the prefixing ‘0x’ from the newly generated PRIVATE_KEY_2.<br><code>(echo &#39;ibase=16;obase=10&#39; &amp;&amp; (echo &#39;(PRIVATE_KEY_1 + PRIVATE_KEY_2) % FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F&#39; | tr &#39;[:lower:]&#39; &#39;[:upper:]&#39;)) | bc</code></li>
+</ol>
+<h2 id="What-happened-to-Profanity1"><a href="#What-happened-to-Profanity1" class="headerlink" title="What happened to Profanity1?"></a>What happened to Profanity1?</h2><p>In September 2022, the original Profanity’s vanity addresses fell victim to an attack. Exploiting a flaw in the tool’s key generation process, attackers drained $3.3 million worth of tokens from users’ wallets.<br>How the Attack Unfolded</p>
+<p>Profanity used a pseudorandom number generator seeded with an unsigned integer, limiting the possible seed values to approximately 4.3 billion. Although this number might seem large, it was not enough to prevent brute force attacks. Estimates suggested that a setup of 1,000 GPUs could potentially crack the private keys of every 7-character vanity address generated by Profanity within 50 days. While costly, the potential rewards were significant.</p>
+<p>In early 2022, 1inch researchers discovered and reported this vulnerability in Profanity. However, the issue gained widespread attention only after attackers exploited it, stealing $3.3 million in tokens and putting additional addresses at risk.</p>
+<p>Read the full article released on <a target="_blank" rel="noopener" href="https://blog.1inch.io/a-vulnerability-disclosed-in-profanity-an-ethereum-vanity-address-tool/">1inch’s blog</a>.</p>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/elliott_profile.jpg" alt="Elliott Green"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Elliott Green</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>127.0.0.1</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Categories</p><a href="/categories"><p class="title">0</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">12</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://twitter.com/cryptonines" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/elliott-green"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com/cryptonines"><i class="fab fa-twitter"></i></a></div></div></div><!--!--><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://eips.ethereum.org/EIPS/eip-5725" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">ERC-5725</span></span><span class="level-right"><span class="level-item tag">eips.ethereum.org</span></span></a></li></ul></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/favicon.ico" alt="elt.green" height="28"></a><p class="is-size-7"><span>&copy; 2024 Elliott Green</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p></div><div class="level-end"></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
