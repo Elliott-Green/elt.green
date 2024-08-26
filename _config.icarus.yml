@@ -2,133 +2,127 @@ version: 5.1.0
 variant: default
 logo: /img/favicon.ico
 head:
-    favicon: /img/favicon.ico
-    manifest:
-        name: Elliott Green
-        short_name: 
-        start_url: 
-        theme_color: 
-        background_color: 
-        display: standalone
-        icons:
-            -
-                src: ''
-                sizes: ''
-                type: 
-    open_graph:
-        title: 
-        type: blog
-        url: Elliott Green
-        image: /img/elliott_profile.jpg
-        site_name: elt.green
-        author: Elliott Green
-        description: 
-        twitter_card: 
-        twitter_id: cryptonines
-        twitter_site: cryptonines
-        google_plus: 
-        fb_admins: 
-        fb_app_id: 
-    structured_data:
-        title: 
-        description: 
-        url: 
-        author: 
-        publisher: 
-        publisher_logo: 
-        image: 
-    meta:
-        - ''
+  favicon: /img/favicon.ico
+  manifest:
+    name: Elliott Green
+    short_name:
+    start_url:
+    theme_color:
+    background_color:
+    display: standalone
+    icons:
+      - src: ''
+        sizes: ''
+        type:
+  open_graph:
+    title:
+    type: blog
+    url: Elliott Green
+    image: /img/elliott_profile.jpg
+    site_name: elt.green
+    author: Elliott Green
+    description:
+    twitter_card:
+    twitter_id: cryptonines
+    twitter_site: cryptonines
+    google_plus:
+    fb_admins:
+    fb_app_id:
+  structured_data:
+    title:
+    description:
+    url:
+    author:
+    publisher:
+    publisher_logo:
+    image:
+  meta:
+    - ''
 navbar:
-    menu:
-        Home: /
-        Archives: /archives
+  menu:
+    Home: /
+    Archives: /archives
 article:
-    highlight:
-        theme: atom-one-light
-        clipboard: true
-        fold: unfolded
-    readtime: true
-    update_time: true
-    licenses:
-        Creative Commons:
-            icon: fab fa-creative-commons
-            url: https://creativecommons.org/
-        Attribution:
-            icon: fab fa-creative-commons-by
-            url: https://creativecommons.org/licenses/by/4.0/
-        Noncommercial:
-            icon: fab fa-creative-commons-nc
-            url: https://creativecommons.org/licenses/by-nc/4.0/
+  highlight:
+    theme: atom-one-light
+    clipboard: true
+    fold: unfolded
+  readtime: true
+  update_time: true
+  licenses:
+    Creative Commons:
+      icon: fab fa-creative-commons
+      url: https://creativecommons.org/
+    Attribution:
+      icon: fab fa-creative-commons-by
+      url: https://creativecommons.org/licenses/by/4.0/
+    Noncommercial:
+      icon: fab fa-creative-commons-nc
+      url: https://creativecommons.org/licenses/by-nc/4.0/
 search:
-    type: insight
+  type: insight
 sidebar:
-    left:
-        sticky: false
-    right:
-        sticky: false
+  left:
+    sticky: false
+  right:
+    sticky: false
 widgets:
-    -
-        position: left
-        type: profile
-        author: Elliott Green
-        author_title: 
-        location: 127.0.0.1
-        avatar: img/elliott_profile.jpg
-        avatar_rounded: true
-        follow_link: https://twitter.com/cryptonines
-        social_links:
-            Github:
-                icon: fab fa-github
-                url: https://github.com/elliott-green
-            Twitter:
-                icon: fab fa-twitter
-                url: https://twitter.com/cryptonines
-    -
-        position: left
-        type: toc
-        index: true
-        collapsed: true
-        depth: 3
-    -
-        position: left
-        type: links
-        links:
-            Ducks: https://duck.community
-            Biomes: https://bizarrebiomes.com
-            Zilkroad: https://zilkroad.io
+  - position: left
+    type: profile
+    author: Elliott Green
+    author_title:
+    location: 127.0.0.1
+    avatar: img/elliott_profile.jpg
+    avatar_rounded: true
+    follow_link: https://twitter.com/cryptonines
+    social_links:
+      Github:
+        icon: fab fa-github
+        url: https://github.com/elliott-green
+      Twitter:
+        icon: fab fa-twitter
+        url: https://twitter.com/cryptonines
+  - position: left
+    type: toc
+    index: true
+    collapsed: true
+    depth: 3
+  - position: left
+    type: links
+    links:
+      ERC-5725: https://eips.ethereum.org/EIPS/eip-5725
 plugins:
-    animejs: false
-    back_to_top: true
-    baidu_analytics:
-        tracking_id: 
-    bing_webmaster:
-        tracking_id: 
-    busuanzi: false
-    cnzz:
-        id: 
-        web_id: 
-    cookie_consent:
-        type: info
-        theme: edgeless
-        static: false
-        position: bottom-left
-        policyLink: https://www.cookiesandyou.com/
-    gallery: true
-    google_analytics:
-        tracking_id: 
-    hotjar:
-        site_id: 
-    katex: false
-    mathjax: false
-    outdated_browser: false
-    progressbar: true
-    statcounter:
-        project: 
-        security: 
-    twitter_conversion_tracking:
-        pixel_id: 
+  animejs: false
+  back_to_top: true
+  baidu_analytics:
+    tracking_id:
+  bing_webmaster:
+    tracking_id:
+  busuanzi: false
+  cnzz:
+    id:
+    web_id:
+  cookie_consent:
+    type: info
+    theme: edgeless
+    static: false
+    position: bottom-left
+    policyLink: https://www.cookiesandyou.com/
+  gallery: true
+  google_analytics:
+    tracking_id:
+  hotjar:
+    site_id:
+  katex: false
+  mathjax: false
+  outdated_browser: false
+  progressbar: true
+  statcounter:
+    project:
+    security:
+  twitter_conversion_tracking:
+    pixel_id:
 providers:
-    cdn: jsdelivr
-    fontcdn: google
-    iconcdn: fontawesome
+  cdn: jsdelivr
+  fontcdn: google
+  iconcdn: fontawesome
